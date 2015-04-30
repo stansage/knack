@@ -2,9 +2,11 @@
 
 namespace knack {
 
+//! Класс цели
 class Target
 {
 public:
+    //! Структура цвета
     struct Color
     {
         float red;
@@ -12,18 +14,30 @@ public:
         float blue;
     };
 
-    Target(float radiusMin, float radiusMax, float speedMax, int rewardMax );
+    //! Создает цель с указанным диапазоном радиуса, пределом скорости и награды
+    Target( float radiusMin, float radiusMax, float speedMax, int rewardMax );
 
+    //! Возвращает цвет
     Color getColor() const;
+    //! Возвращает радиус
     float getRadius() const;
+    //! Возвращает награду
     int getReward() const;
+    //! Возвращает X-координату центра
     float getX() const;
+    //! Возвращает Y-координату центра
     float getY() const;
 
+    //! Проверяет вхождение точки c указанными кооринатами в область цели
     bool inArea( float x, float y ) const;
-    bool move();
+    //! Проверяет выход цели за границы рабочей области
+    bool inBounds() const;
+
+    //! Меняет расположение цели
+    void move();
 
 private:
+    //! Генерирует случайное число от 0 до 1
     static float getRandomValue();
 
 private:

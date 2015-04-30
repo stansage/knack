@@ -1,7 +1,7 @@
 #include "render.hpp"
+#include "font.hpp"
 #include <GL/gl.h>
 #include <cmath>
-#include <iostream>
 
 namespace knack {
 
@@ -29,6 +29,7 @@ void Render::useColor( float r, float g, float b )
 
 void Render::drawDisk( float x, float y, float r, int segments )
 {
+    //! Апроксимируем окружность треугольниками
     glBegin( GL_TRIANGLE_FAN );
     glVertex2f( x, y );
     for( int n = 0; n <= segments; ++n ) {
@@ -36,6 +37,18 @@ void Render::drawDisk( float x, float y, float r, int segments )
         glVertex2f( x + std::sin( t ) * r, y + std::cos( t ) * r );
     }
     glEnd();
+}
+
+void Render::drawText( float x, float y, const Font & font, const std::string & text )
+{
+    //! Отрисовываем каждый символ строки глифом заданного шрифта
+    for ( auto i = 0; i <  text.length(); ++ i ) {
+        glBegin( GL_LINE_STRIP );
+        for ( const auto & point : font.findGlyph( text[ i ] ) ) {
+            glVertex2f( x + point.first + i * font.getSize(), y + point.second );
+        }
+        glEnd();
+    }
 }
 
 

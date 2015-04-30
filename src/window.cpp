@@ -4,10 +4,7 @@
 
 namespace knack {
 
-Window::Window( int width, int height ) :
-    m_mouseX( 0.d ),
-    m_mouseY( 0.d ),
-    m_click( nullptr )
+Window::Window( int width, int height )
 {
     m_window = glfwCreateWindow( width, height, "Knock", nullptr, nullptr );
     if ( m_window == nullptr ) {
@@ -61,7 +58,7 @@ void Window::onMouseMove( GLFWwindow * window, double x, double y )
 {
     assert( window != nullptr );
 
-    Window * self = static_cast< Window * >( glfwGetWindowUserPointer( window ) );
+    const auto self = static_cast< Window * >( glfwGetWindowUserPointer( window ) );
     if ( self != nullptr ) {
         assert( self->m_window == window );
 
@@ -74,7 +71,7 @@ void Window::onMouseClick( GLFWwindow * window, int button, int action, int mode
 {
     assert( window != nullptr );
 
-    Window * self = static_cast< Window * >( glfwGetWindowUserPointer( window ) );
+    const auto self = static_cast< Window * >( glfwGetWindowUserPointer( window ) );
     if ( self != nullptr ) {
         assert( self->m_window == window );
 

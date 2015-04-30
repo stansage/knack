@@ -1,5 +1,5 @@
 #include "timer.hpp"
-
+#include "assert.h"
 
 namespace knack {
 
@@ -14,6 +14,7 @@ int Timer::getDuration() const
     auto result = std::chrono::duration_cast< std::chrono::microseconds >( duration ).count();
 
     if ( result == 0 ) {
+        //! Минимальный временной промежуток 1 микросекунда
         result = 1;
     }
 
