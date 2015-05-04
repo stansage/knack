@@ -77,7 +77,7 @@ int Game::run()
 
             //! FPS = frame * 10^6 / microseconds
             const auto score = std::to_string( m_score );
-            const auto fps = std::to_string( int ( 1000000.d * frame / timer.getDuration() ) );
+            const auto fps = std::to_string( int ( 1000000.0 * frame / timer.getDuration() ) );
 
             //! Рисуем игровые объекты
             render.begin( size.first, size.second );
@@ -113,8 +113,8 @@ void Game::onWindowClick( Window * window, double x, double y )
     window->readViewportSize( size.first, size.second );
 
     //! Пересчитываем оконные координаты в координаты области рисования
-    x = 2.d * x / size.first - 1.f;
-    y = 1.f - 2.d * y / size.second;
+    x = 2.0 * x / size.first - 1.0;
+    y = 1.0 - 2.0 * y / size.second;
 
     //! Проверяем попали ли в цель
     if ( m_target->inArea( x, y ) == true ) {

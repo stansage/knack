@@ -1,13 +1,13 @@
 #include "render.hpp"
 #include "font.hpp"
-#include <GL/gl.h>
+#include <GLFW/glfw3.h>
 #include <cmath>
 
 namespace knack {
 
 Render::Render()
 {
-    glShadeModel( GL_FLAT );
+//    glShadeModel( GL_FLAT );
 }
 
 void Render::begin( int width, int height )
